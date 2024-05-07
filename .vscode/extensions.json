@@ -2,9 +2,6 @@
   "recommendations": [
     // Automatically enter devenv environment
     "mkhl.direnv",
-    // React formatting
     "dbaeumer.vscode-eslint",
-    // Format remaining files
-    "esbenp.prettier-vscode", 
   ]
 }
