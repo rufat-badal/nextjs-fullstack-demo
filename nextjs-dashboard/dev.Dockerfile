@@ -1,16 +1,18 @@
 FROM node:20-alpine
 
-WORKDIR /app
+WORKDIR /nextjs-dashboard
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+# python is required for gyp (see also https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#node-gyp-alpine)
+RUN apk add --no-cache --virtual .gyp python3 make g++ \
+  && if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
   elif [ -f package-lock.json ]; then npm ci; \
   elif [ -f pnpm-lock.yaml ]; then yarn global add pnpm && pnpm i; \
   # Allow install without lockfile, so example works even without Node.js installed locally
   else echo "Warning: Lockfile not found. It is recommended to commit lockfiles to version control." && yarn install; \
-  fi
+  fi \
+  && apk del .gyp
 
 COPY app ./app
 COPY public ./public

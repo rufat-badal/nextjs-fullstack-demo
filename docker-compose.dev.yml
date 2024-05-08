@@ -2,10 +2,10 @@
 # https://docs.docker.com/compose/compose-file/#version-top-level-element
 
 services:
-  my-next-app:
-    container_name: my-next-app
+  nextjs-dashboard:
+    container_name: nextjs-dashboard
     build:
-      context: ./my-next-app
+      context: ./nextjs-dashboard
       dockerfile: dev.Dockerfile
     environment:
       # should be defined in .env
@@ -16,8 +16,8 @@ services:
       # defined in .local.env
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ./my-next-app/app:/my-next-app/app
-      - ./my-next-app/public:/my-next-app/public
+      - ./nextjs-dashboard/app:/nextjs-dashboard/app
+      - ./nextjs-dashboard/public:/nextjs-dashboard/public
       # It's not necessary to sync the `.next` directory
       # Add later once the postgres database is set-up
       # depends_on:
