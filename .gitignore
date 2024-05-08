@@ -10,4 +10,4 @@ devenv.local.nix
 .DS_Store
 
 # local env files
-.secret.env
+.env.local
