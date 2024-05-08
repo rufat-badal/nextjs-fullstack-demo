@@ -3,6 +3,6 @@
 {
   packages = [ 
     pkgs.nodejs_20
-    pkgs.nodejs_20.pkgs.pnpm
+    pkgs.nodejs_20.pkgs.npm
   ];
 }
