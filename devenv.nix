@@ -4,5 +4,6 @@
   packages = [ 
     pkgs.nodejs_20
     pkgs.nodejs_20.pkgs.npm
+    pkgs.caddy
   ];
 }

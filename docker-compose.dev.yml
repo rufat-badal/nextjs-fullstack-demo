@@ -12,6 +12,29 @@ services:
       - ./nextjs-dashboard/public:/nextjs-dashboard/public
       # It's not necessary to sync the `.next` directory
     restart: always
-    # For the moment the port is handled by the my-next-app service (remove, once caddy is set-up)
     ports:
-      - 3000:3000
+      - "3000:3000"
+    networks:
+      - my-network
+
+  caddy:
+    image: caddy:2.7-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - $PWD/caddy/Caddyfile:/etc/caddy/Caddyfile
+      - caddy-data:/data
+    depends_on:
+      - nextjs-dashboard
+    networks:
+      - my-network
+
+volumes:
+  caddy-data:
+
+networks:
+  my-network:
+    external: true

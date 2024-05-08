@@ -1,0 +1,3 @@
+localhost {
+	reverse_proxy nextjs-dashboard:3000
+}
