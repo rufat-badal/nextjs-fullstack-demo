@@ -3,7 +3,7 @@
 {
   packages = [ 
     pkgs.nodejs_20
-    pkgs.nodejs_20.pkgs.npm
+    pkgs.nodejs_20.pkgs.pnpm
     pkgs.caddy
   ];
 }
