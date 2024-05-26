@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS revenue (
 
 -- Users Data
 INSERT INTO users (id, name, email, password)
-VALUES (410544b2-4001-4271-9855-fec4b6a6442a, User, user@nextmail.com, $2b$10$XA91.0woFZ/rLmkOpZEP4O2h5RN3NO4B/vnPjOhBJCEY/drynWB5q)
+VALUES (410544b2-4001-4271-9855-fec4b6a6442a, User, user@nextmail.com, $2b$10$KDFh7hutYEc0emxbV6N8/eXmcPG0H6OCCT2ySqeC0uqRr6u.wKvyu)
 ON CONFLICT (id) DO NOTHING;
 
 -- Invoices Data
@@ -75,4 +75,36 @@ VALUES (3958dc9e-712f-4377-85e9-fec4b6a6442a, 8945, paid, 2023-10-04)
 ON CONFLICT (id) DO NOTHING;
 INSERT INTO invoices (customer_id, amount, status, date)
 VALUES (3958dc9e-737f-4377-85e9-fec4b6a6442a, 1000, paid, 2022-06-05)
+ON CONFLICT (id) DO NOTHING;
+
+-- Customers Data
+INSERT INTO customers (id, name, email, image_url)
+VALUES (3958dc9e-712f-4377-85e9-fec4b6a6442a, Delba de Oliveira, delba@oliveira.com, /customers/delba-de-oliveira.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (3958dc9e-742f-4377-85e9-fec4b6a6442a, Lee Robinson, lee@robinson.com, /customers/lee-robinson.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (3958dc9e-737f-4377-85e9-fec4b6a6442a, Hector Simpson, hector@simpson.com, /customers/hector-simpson.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (50ca3e18-62cd-11ee-8c99-0242ac120002, Steven Tey, steven@tey.com, /customers/steven-tey.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (3958dc9e-787f-4377-85e9-fec4b6a6442a, Steph Dietz, steph@dietz.com, /customers/steph-dietz.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (76d65c26-f784-44a2-ac19-586678f7c2f2, Michael Novotny, michael@novotny.com, /customers/michael-novotny.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (d6e15727-9fe1-4961-8c5b-ea44a9bd81aa, Evil Rabbit, evil@rabbit.com, /customers/evil-rabbit.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (126eed9c-c90c-4ef6-a4a8-fcf7408d3c66, Emil Kowalski, emil@kowalski.com, /customers/emil-kowalski.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (CC27C14A-0ACF-4F4A-A6C9-D45682C144B9, Amy Burns, amy@burns.com, /customers/amy-burns.png)
+ON CONFLICT (id) DO NOTHING;
+INSERT INTO customers (id, name, email, image_url)
+VALUES (13D07535-C59E-4157-A011-F8D2EF4E0CBB, Balazs Orban, balazs@orban.com, /customers/balazs-orban.png)
 ON CONFLICT (id) DO NOTHING;
