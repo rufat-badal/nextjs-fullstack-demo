@@ -24,3 +24,8 @@ CREATE TABLE IF NOT EXISTS revenue (
     month VARCHAR(4) NOT NULL UNIQUE,
     revenue INT NOT NULL
 );
+
+-- Users Data
+INSERT INTO users (id, name, email, password)
+VALUES (410544b2-4001-4271-9855-fec4b6a6442a, User, user@nextmail.com, $2b$10$DWyQcV.5Z83DCo/V0Ppds.eUh2Sd6WTGu6V4.No6ovFhxXdppaOQi)
+ON CONFLICT (id) DO NOTHING;

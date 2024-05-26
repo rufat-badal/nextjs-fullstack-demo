@@ -1,4 +1,11 @@
 const fs = require('fs');
+const {
+    invoices,
+    customers,
+    revenue,
+    users,
+} = require('./nextjs-dashboard/app/lib/placeholder-data.js');
+const bcrypt = require('bcrypt');
 
 const seedDataFile = "./postgres/data.sql";
 
@@ -39,12 +46,24 @@ function createFile() {
     fs.writeFileSync(seedDataFile, uuidExtensionData + "\n");
 }
 
+function seedUsers() {
+    appendData("\n-- Users Data");
+    users.map((user) => {
+        const hashedPassword = bcrypt.hashSync(user.password, 10);
+        appendData(`INSERT INTO users (id, name, email, password)
+VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
+ON CONFLICT (id) DO NOTHING;`);
+    });
+}
+
 function createTables() {
     appendData("\n-- Tables");
     appendData(usersTableData);
     appendData(invoicesTableData);
     appendData(customersTableData);
     appendData(revenueTableData);
+
+    seedUsers();
 }
 
 function main() {
