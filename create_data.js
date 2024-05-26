@@ -56,6 +56,15 @@ ON CONFLICT (id) DO NOTHING;`);
     });
 }
 
+function seedInvoices() {
+    appendData("\n-- Invoices Data");
+    invoices.map((invoice) => {
+        appendData(`INSERT INTO invoices (customer_id, amount, status, date)
+VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
+ON CONFLICT (id) DO NOTHING;`);
+    });
+}
+
 function createTables() {
     appendData("\n-- Tables");
     appendData(usersTableData);
@@ -64,6 +73,7 @@ function createTables() {
     appendData(revenueTableData);
 
     seedUsers();
+    seedInvoices();
 }
 
 function main() {
