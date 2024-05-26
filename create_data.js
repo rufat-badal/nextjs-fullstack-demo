@@ -12,7 +12,7 @@ const usersTableData = `CREATE TABLE IF NOT EXISTS users (
 );`;
 
 function appendData(data) {
-    fs.writeFileSync(seedDataFile, data, { flag: "a" });
+    fs.writeFileSync(seedDataFile, data + "\n", { flag: "a" });
 }
 
 function createFile() {
@@ -21,7 +21,7 @@ function createFile() {
 
 function main() {
     createFile();
-    appendData("\n" + usersTableData + "\n");
+    appendData("\n" + usersTableData);
 }
 
 main();
