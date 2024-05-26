@@ -6,7 +6,6 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[caddyfile]": {
     "editor.defaultFormatter": "matthewpi.caddyfile-support"
   },

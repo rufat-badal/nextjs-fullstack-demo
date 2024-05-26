@@ -1,8 +1,8 @@
 {
   "recommendations": [
-    // Automatically enter devenv environment
     "mkhl.direnv",
     "dbaeumer.vscode-eslint",
     "bradlc.vscode-tailwindcss",
+    "matthewpi.caddyfile-support"
   ]
 }
