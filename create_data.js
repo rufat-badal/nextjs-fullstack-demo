@@ -19,6 +19,13 @@ const invoicesTableData = `CREATE TABLE IF NOT EXISTS invoices (
     date DATE NOT NULL
 );`;
 
+const customersTableData = `CREATE TABLE IF NOT EXISTS customers (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL
+);`;
+
 function appendData(data) {
     fs.writeFileSync(seedDataFile, data + "\n", { flag: "a" });
 }
@@ -31,6 +38,7 @@ function createTables() {
     appendData("\n-- Tables");
     appendData(usersTableData);
     appendData(invoicesTableData);
+    appendData(customersTableData);
 }
 
 function main() {
