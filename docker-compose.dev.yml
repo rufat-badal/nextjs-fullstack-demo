@@ -16,6 +16,8 @@ services:
       - ./nextjs-dashboard/public:/nextjs-dashboard/public
       # It's not necessary to sync the `.next` directory
     restart: always
+    depends_on:
+      - postgres
     networks:
       - my-network
 
