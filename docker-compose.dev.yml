@@ -7,6 +7,8 @@ services:
     build:
       context: ./nextjs-dashboard
       dockerfile: dev.Dockerfile
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "3000:3000"
     volumes:
@@ -32,8 +34,21 @@ services:
     networks:
       - my-network
 
+  postgres:
+    container_name: postgres
+    build:
+      context: ./postgres
+      dockerfile: dev.Dockerfile
+    environment:
+      # The only variable required is `POSTGRES_PASSWORD`, the rest are optional
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: always
+    networks:
+      - my-network
+
 volumes:
   caddy-data:
+
 
 networks:
   my-network:
