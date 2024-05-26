@@ -26,6 +26,11 @@ const customersTableData = `CREATE TABLE IF NOT EXISTS customers (
     image_url VARCHAR(255) NOT NULL
 );`;
 
+const revenueTableData = `CREATE TABLE IF NOT EXISTS revenue (
+    month VARCHAR(4) NOT NULL UNIQUE,
+    revenue INT NOT NULL
+);`;
+
 function appendData(data) {
     fs.writeFileSync(seedDataFile, data + "\n", { flag: "a" });
 }
@@ -39,6 +44,7 @@ function createTables() {
     appendData(usersTableData);
     appendData(invoicesTableData);
     appendData(customersTableData);
+    appendData(revenueTableData);
 }
 
 function main() {

@@ -20,3 +20,7 @@ CREATE TABLE IF NOT EXISTS customers (
     email VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) NOT NULL
 );
+CREATE TABLE IF NOT EXISTS revenue (
+    month VARCHAR(4) NOT NULL UNIQUE,
+    revenue INT NOT NULL
+);
