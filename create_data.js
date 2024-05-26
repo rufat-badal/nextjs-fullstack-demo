@@ -74,6 +74,15 @@ ON CONFLICT (id) DO NOTHING;`);
     });
 }
 
+function seedRevenue() {
+    appendData("\n-- Revenue Data");
+    revenue.map((rev) => {
+        appendData(`INSERT INTO revenue (month, revenue)
+VALUES (${rev.month}, ${rev.revenue})
+ON CONFLICT (month) DO NOTHING;`);
+    });
+}
+
 function createTables() {
     appendData("\n-- Tables");
     appendData(usersTableData);
@@ -84,6 +93,7 @@ function createTables() {
     seedUsers();
     seedInvoices();
     seedCustomers();
+    seedRevenue();
 }
 
 function main() {

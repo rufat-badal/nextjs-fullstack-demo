@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS revenue (
 
 -- Users Data
 INSERT INTO users (id, name, email, password)
-VALUES (410544b2-4001-4271-9855-fec4b6a6442a, User, user@nextmail.com, $2b$10$KDFh7hutYEc0emxbV6N8/eXmcPG0H6OCCT2ySqeC0uqRr6u.wKvyu)
+VALUES (410544b2-4001-4271-9855-fec4b6a6442a, User, user@nextmail.com, $2b$10$gNaqwChGYYdY7.DnCvDhDORL5GqwJPn55xaae2rRHAjKUixd2TD/e)
 ON CONFLICT (id) DO NOTHING;
 
 -- Invoices Data
@@ -108,3 +108,41 @@ ON CONFLICT (id) DO NOTHING;
 INSERT INTO customers (id, name, email, image_url)
 VALUES (13D07535-C59E-4157-A011-F8D2EF4E0CBB, Balazs Orban, balazs@orban.com, /customers/balazs-orban.png)
 ON CONFLICT (id) DO NOTHING;
+
+-- Revenue Data
+INSERT INTO revenue (month, revenue)
+VALUES (Jan, 2000)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Feb, 1800)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Mar, 2200)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Apr, 2500)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (May, 2300)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Jun, 3200)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Jul, 3500)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Aug, 3700)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Sep, 2500)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Oct, 2800)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Nov, 3000)
+ON CONFLICT (month) DO NOTHING;
+INSERT INTO revenue (month, revenue)
+VALUES (Dec, 4800)
+ON CONFLICT (month) DO NOTHING;
