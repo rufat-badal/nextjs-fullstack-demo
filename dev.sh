@@ -5,6 +5,10 @@ docker kill $(docker ps -aq) && docker rm $(docker ps -aq)
 # with each other, by using their container name as a hostname
 docker network create my-network
 
+# --renew-anon-volumes does not work with the postgres container
+# the command below will delete the anonymous volume of the postgres container
+docker compose --env-file .env.local -f docker-compose.dev.yml rm -fv postgres
+
 # Build dev
 docker compose --env-file .env.local -f docker-compose.dev.yml build
 
