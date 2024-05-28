@@ -89,7 +89,9 @@ function createTables() {
     appendData(invoicesTableData);
     appendData(customersTableData);
     appendData(revenueTableData);
+}
 
+function seedTables() {
     seedUsers();
     seedInvoices();
     seedCustomers();
@@ -99,6 +101,7 @@ function createTables() {
 function main() {
     createFile();
     createTables();
+    seedTables();
 }
 
 main();

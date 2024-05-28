@@ -36,7 +36,7 @@ VALUES
         '410544b2-4001-4271-9855-fec4b6a6442a',
         'User',
         'user@nextmail.com',
-        '$2b$10$C1WZMvMLmK3KXEWQjFJ09.3RbC0fntU.NWYS2m13ZvwXlcoRiaW.W'
+        '$2b$10$etyVOQ3UJYiz761ecOPh8Oc0xABvSzN0WG9vdKM9FOes5FOcwXa.y'
     ) ON CONFLICT (id) DO NOTHING;
 
 -- Invoices Data
