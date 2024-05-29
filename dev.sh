@@ -7,12 +7,12 @@ docker network create my-network
 
 # --renew-anon-volumes does not work with the postgres container
 # the command below will delete the anonymous volume of the postgres container
-docker compose --env-file .env.local -f docker-compose.dev.yml rm -fv postgres
+docker compose --env-file .env.local --env-file .env -f docker-compose.dev.yml rm -fv postgres
 
 # Build dev
-docker compose --env-file .env.local -f docker-compose.dev.yml build
+docker compose --env-file .env.local --env-file .env -f docker-compose.dev.yml build
 
 # Up dev
 # --renew-anon-volumes
 #   postgres/mysql retrieve volumes from previous containers after being killed
-docker compose --env-file .env.local -f docker-compose.dev.yml up --renew-anon-volumes
+docker compose --env-file .env.local --env-file .env -f docker-compose.dev.yml up --renew-anon-volumes

@@ -1,14 +1,24 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+CREATE SCHEMA acma_data AUTHORIZATION acma_data_user;
+
+GRANT ALL PRIVILEGES ON SCHEMA acma_data TO acma_data_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA acma_data GRANT ALL PRIVILEGES ON TABLES TO acma_data_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA acma_data GRANT ALL PRIVILEGES ON SEQUENCES TO acma_data_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA acma_data GRANT ALL PRIVILEGES ON FUNCTIONS TO acma_data_user;
+
 -- Tables
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS acma_data.users (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS invoices (
+CREATE TABLE IF NOT EXISTS acma_data.invoices (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     customer_id UUID NOT NULL,
     amount INT NOT NULL,
@@ -16,32 +26,32 @@ CREATE TABLE IF NOT EXISTS invoices (
     date DATE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS customers (
+CREATE TABLE IF NOT EXISTS acma_data.customers (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS revenue (
+CREATE TABLE IF NOT EXISTS acma_data.revenue (
     month VARCHAR(4) NOT NULL UNIQUE,
     revenue INT NOT NULL
 );
 
 -- Users Data
 INSERT INTO
-    users (id, name, email, password)
+    acma_data.users (id, name, email, password)
 VALUES
     (
         '410544b2-4001-4271-9855-fec4b6a6442a',
         'User',
         'user@nextmail.com',
-        '$2b$10$etyVOQ3UJYiz761ecOPh8Oc0xABvSzN0WG9vdKM9FOes5FOcwXa.y'
+        '$2b$10$aX1xfcxbS7rVhBQgxrM9D.YZyB60DMqORIIGLtmQLqTZ7614M6uQC'
     ) ON CONFLICT (id) DO NOTHING;
 
 -- Invoices Data
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-712f-4377-85e9-fec4b6a6442a',
@@ -51,7 +61,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-742f-4377-85e9-fec4b6a6442a',
@@ -61,7 +71,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-787f-4377-85e9-fec4b6a6442a',
@@ -71,7 +81,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '50ca3e18-62cd-11ee-8c99-0242ac120002',
@@ -81,7 +91,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '76d65c26-f784-44a2-ac19-586678f7c2f2',
@@ -91,7 +101,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '126eed9c-c90c-4ef6-a4a8-fcf7408d3c66',
@@ -101,7 +111,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
@@ -111,7 +121,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '50ca3e18-62cd-11ee-8c99-0242ac120002',
@@ -121,7 +131,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-787f-4377-85e9-fec4b6a6442a',
@@ -131,7 +141,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '76d65c26-f784-44a2-ac19-586678f7c2f2',
@@ -141,7 +151,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-742f-4377-85e9-fec4b6a6442a',
@@ -151,7 +161,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '76d65c26-f784-44a2-ac19-586678f7c2f2',
@@ -161,7 +171,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-737f-4377-85e9-fec4b6a6442a',
@@ -171,7 +181,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-712f-4377-85e9-fec4b6a6442a',
@@ -181,7 +191,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    invoices (customer_id, amount, status, date)
+    acma_data.invoices (customer_id, amount, status, date)
 VALUES
     (
         '3958dc9e-737f-4377-85e9-fec4b6a6442a',
@@ -192,7 +202,7 @@ VALUES
 
 -- Customers Data
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '3958dc9e-712f-4377-85e9-fec4b6a6442a',
@@ -202,7 +212,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '3958dc9e-742f-4377-85e9-fec4b6a6442a',
@@ -212,7 +222,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '3958dc9e-737f-4377-85e9-fec4b6a6442a',
@@ -222,7 +232,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '50ca3e18-62cd-11ee-8c99-0242ac120002',
@@ -232,7 +242,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '3958dc9e-787f-4377-85e9-fec4b6a6442a',
@@ -242,7 +252,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '76d65c26-f784-44a2-ac19-586678f7c2f2',
@@ -252,7 +262,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         'd6e15727-9fe1-4961-8c5b-ea44a9bd81aa',
@@ -262,7 +272,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '126eed9c-c90c-4ef6-a4a8-fcf7408d3c66',
@@ -272,7 +282,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         'CC27C14A-0ACF-4F4A-A6C9-D45682C144B9',
@@ -282,7 +292,7 @@ VALUES
     ) ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO
-    customers (id, name, email, image_url)
+    acma_data.customers (id, name, email, image_url)
 VALUES
     (
         '13D07535-C59E-4157-A011-F8D2EF4E0CBB',
@@ -293,61 +303,61 @@ VALUES
 
 -- Revenue Data
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Jan', 2000) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Feb', 1800) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Mar', 2200) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Apr', 2500) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('May', 2300) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Jun', 3200) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Jul', 3500) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Aug', 3700) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Sep', 2500) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Oct', 2800) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Nov', 3000) ON CONFLICT (month) DO NOTHING;
 
 INSERT INTO
-    revenue (month, revenue)
+    acma_data.revenue (month, revenue)
 VALUES
     ('Dec', 4800) ON CONFLICT (month) DO NOTHING;
