@@ -21,7 +21,8 @@ services:
       # It's not necessary to sync the `.next` directory
     restart: always
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - my-network
 
@@ -54,6 +55,13 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       # The only variable required is `POSTGRES_PASSWORD`, the rest are optional
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      # Needed for health check even though POSTGRES_USER was already defined
+      PGUSER: ${POSTGRES_USER}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 1s
+      timeout: 5s
+      retries: 10
     restart: always
     networks:
       - my-network
