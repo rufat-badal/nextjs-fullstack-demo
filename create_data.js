@@ -9,19 +9,16 @@ const bcrypt = require('bcrypt');
 
 const seedDataFile = "./postgres/data.sql";
 
-const dbName = "acma_data";
-const dbUserName = dbName + "_user";
-
 const uuidExtensionData = `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";`;
 
-const usersTableData = `CREATE TABLE IF NOT EXISTS ${dbName}.users (
+const usersTableData = `CREATE TABLE IF NOT EXISTS users (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL
 );`;
 
-const invoicesTableData = `CREATE TABLE IF NOT EXISTS ${dbName}.invoices (
+const invoicesTableData = `CREATE TABLE IF NOT EXISTS invoices (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     customer_id UUID NOT NULL,
     amount INT NOT NULL,
@@ -29,14 +26,14 @@ const invoicesTableData = `CREATE TABLE IF NOT EXISTS ${dbName}.invoices (
     date DATE NOT NULL
 );`;
 
-const customersTableData = `CREATE TABLE IF NOT EXISTS ${dbName}.customers (
+const customersTableData = `CREATE TABLE IF NOT EXISTS customers (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     image_url VARCHAR(255) NOT NULL
 );`;
 
-const revenueTableData = `CREATE TABLE IF NOT EXISTS ${dbName}.revenue (
+const revenueTableData = `CREATE TABLE IF NOT EXISTS revenue (
     month VARCHAR(4) NOT NULL UNIQUE,
     revenue INT NOT NULL
 );`;
@@ -47,20 +44,13 @@ function appendData(data) {
 
 function createFile() {
     fs.writeFileSync(seedDataFile, uuidExtensionData + "\n");
-    fs.writeFileSync(seedDataFile, `CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE SCHEMA ${dbName} AUTHORIZATION ${dbUserName};
-GRANT ALL PRIVILEGES ON SCHEMA ${dbName} TO ${dbUserName};
-ALTER DEFAULT PRIVILEGES IN SCHEMA ${dbName} GRANT ALL PRIVILEGES ON TABLES TO ${dbUserName};
-ALTER DEFAULT PRIVILEGES IN SCHEMA ${dbName} GRANT ALL PRIVILEGES ON SEQUENCES TO ${dbUserName};
-ALTER DEFAULT PRIVILEGES IN SCHEMA ${dbName} GRANT ALL PRIVILEGES ON FUNCTIONS TO ${dbUserName};
-`);
 }
 
 function seedUsers() {
     appendData("\n-- Users Data");
     users.map((user) => {
         const hashedPassword = bcrypt.hashSync(user.password, 10);
-        appendData(`INSERT INTO ${dbName}.users (id, name, email, password)
+        appendData(`INSERT INTO users (id, name, email, password)
 VALUES ('${user.id}', '${user.name}', '${user.email}', '${hashedPassword}')
 ON CONFLICT (id) DO NOTHING;`);
     });
@@ -69,7 +59,7 @@ ON CONFLICT (id) DO NOTHING;`);
 function seedInvoices() {
     appendData("\n-- Invoices Data");
     invoices.map((invoice) => {
-        appendData(`INSERT INTO ${dbName}.invoices (customer_id, amount, status, date)
+        appendData(`INSERT INTO invoices (customer_id, amount, status, date)
 VALUES ('${invoice.customer_id}', ${invoice.amount}, '${invoice.status}', '${invoice.date}')
 ON CONFLICT (id) DO NOTHING;`);
     });
@@ -78,7 +68,7 @@ ON CONFLICT (id) DO NOTHING;`);
 function seedCustomers() {
     appendData("\n-- Customers Data");
     customers.map((customer) => {
-        appendData(`INSERT INTO ${dbName}.customers (id, name, email, image_url)
+        appendData(`INSERT INTO customers (id, name, email, image_url)
 VALUES ('${customer.id}', '${customer.name}', '${customer.email}', '${customer.image_url}')
 ON CONFLICT (id) DO NOTHING;`);
     });
@@ -87,7 +77,7 @@ ON CONFLICT (id) DO NOTHING;`);
 function seedRevenue() {
     appendData("\n-- Revenue Data");
     revenue.map((rev) => {
-        appendData(`INSERT INTO ${dbName}.revenue (month, revenue)
+        appendData(`INSERT INTO revenue (month, revenue)
 VALUES ('${rev.month}', ${rev.revenue})
 ON CONFLICT (month) DO NOTHING;`);
     });
