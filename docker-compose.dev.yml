@@ -51,14 +51,16 @@ services:
     environment:
       POSTGRES_HOST: ${POSTGRES_HOST}
       POSTGRES_PORT: ${POSTGRES_PORT}
-      POSTGRES_DATABASE: ${POSTGRES_DATABASE}
+      POSTGRES_DB: ${POSTGRES_DATABASE}
       POSTGRES_USER: ${POSTGRES_USER}
       # The only variable required is `POSTGRES_PASSWORD`, the rest are optional
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      # Needed for health check even though POSTGRES_USER was already defined
-      PGUSER: ${POSTGRES_USER}
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready" ]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -d ${POSTGRES_DATABASE} -U ${POSTGRES_USER}"
+        ]
       interval: 1s
       timeout: 5s
       retries: 10
