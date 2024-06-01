@@ -1,4 +1,7 @@
-DOCKER_NETWORK=my-network
+DOCKER_NETWORK="my-network"
+_my_docker_compose() {
+    docker compose --env-file .env.local --env-file .env -f docker-compose.dev.yml "$@"
+}
 
 # Stop all running containers
 # we need to surround $running_containers with "" in order to assure that the string
@@ -25,9 +28,9 @@ if [ ! "$(docker network ls | grep $DOCKER_NETWORK)" ]; then
 fi
 
 # Build dev
-docker compose --env-file .env.local --env-file .env -f docker-compose.dev.yml build
+_my_docker_compose build
 
 # # Up dev
 # # --renew-anon-volumes
 # #   postgres/mysql retrieve volumes from previous containers after being killed
-docker compose --env-file .env.local --env-file .env -f docker-compose.dev.yml up --renew-anon-volumes
+_my_docker_compose up --renew-anon-volumes
