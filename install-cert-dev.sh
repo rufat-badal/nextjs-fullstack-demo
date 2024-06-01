@@ -19,7 +19,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         sudo security delete-certificate -Z $SHA1
     fi
     sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /tmp/root.crt
-    openssl x509 -in /tmp/root.crt -outform DER | sha1sum | head -c 40 > $ROOT_CRT_SHA1_FILE
+    
+    crt_sha1 /tmp/root.crt > $ROOT_CRT_SHA1_FILE
 else
     echo "$OSTYPE is not supported"
 fi
