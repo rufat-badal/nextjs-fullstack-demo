@@ -13,3 +13,8 @@ crt_sha1() {
     sha1=$(openssl x509 -in $1 -outform DER | sha1sum | head -c 40)
     echo $sha1
 }
+
+read_crt_sha1() {
+    sha1=$(head -c 40 $ROOT_CRT_SHA1_FILE)
+    echo $sha1
+}
