@@ -12,8 +12,15 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         echo "$PRETTY_NAME is not supported"
     fi
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # Old certificates need to be still deleted by hand
+    SHA1=$(head -c 40 $ROOT_CRT_SHA1_FILE)
+    match=$(sudo security find-certificate -a -c "Caddy" -Z | grep ^SHA-1 | grep -i $SHA1)
+    if [ ! -z "$match" ]; then
+        echo "Deleting old certificate"
+        sudo security delete-certificate -Z $SHA1
+    fi
     sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /tmp/root.crt
+    openssl x509 -in /tmp/root.crt -outform DER | sha1sum | head -c 40 > $ROOT_CRT_SHA1_FILE
 else
     echo "$OSTYPE is not supported"
 fi
+rm /tmp/root.crt

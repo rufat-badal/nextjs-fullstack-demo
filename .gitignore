@@ -11,3 +11,5 @@ devenv.local.nix
 
 # local env files
 .env.local
+
+rootcrt_sha1sum.txt
