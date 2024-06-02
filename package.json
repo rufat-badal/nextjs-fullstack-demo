@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "seed": "node create_data.js"
+    "seed": "node create_data.js",
+    "prettier": "prettier --write --ignore-unknown ."
   },
   "devDependencies": {
     "@heroicons/react": "^2.0.18",
