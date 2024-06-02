@@ -4,6 +4,14 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+dependencies:
+  kysely-postgres-js:
+    specifier: ^2.0.0
+    version: 2.0.0(kysely@0.27.3)(postgres@3.4.4)
+  postgres:
+    specifier: ^3.4.4
+    version: 3.4.4
+
 devDependencies:
   '@heroicons/react':
     specifier: ^2.0.18
@@ -2723,10 +2731,19 @@ packages:
       json-buffer: 3.0.1
     dev: true
 
+  /kysely-postgres-js@2.0.0(kysely@0.27.3)(postgres@3.4.4):
+    resolution: {integrity: sha512-R1tWx6/x3tSatWvsmbHJxpBZYhNNxcnMw52QzZaHKg7ZOWtHib4iZyEaw4gb2hNKVctWQ3jfMxZT/ZaEMK6kBQ==}
+    peerDependencies:
+      kysely: '>= 0.24.0 < 1'
+      postgres: '>= 3.4.0 < 4'
+    dependencies:
+      kysely: 0.27.3
+      postgres: 3.4.4
+    dev: false
+
   /kysely@0.27.3:
     resolution: {integrity: sha512-lG03Ru+XyOJFsjH3OMY6R/9U38IjDPfnOfDgO3ynhbDr+Dz8fak+X6L62vqu3iybQnj+lG84OttBuU9KY3L9kA==}
     engines: {node: '>=14.0.0'}
-    dev: true
 
   /language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
@@ -3272,6 +3289,11 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.2.0
     dev: true
+
+  /postgres@3.4.4:
+    resolution: {integrity: sha512-IbyN+9KslkqcXa8AO9fxpk97PA4pzewvpi2B3Dwy9u4zpV32QicaEdgmF3eSQUzdRk7ttDHQejNgAEr4XoeH4A==}
+    engines: {node: '>=12'}
+    dev: false
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
