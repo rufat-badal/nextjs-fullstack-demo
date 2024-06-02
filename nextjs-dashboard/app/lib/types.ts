@@ -1,6 +1,5 @@
-import { Generated } from 'kysely';
-
-type UUID = `${string}-${string}-${string}-${string}-${string}`;
+import { UUID } from 'crypto';
+import { ColumnType, Generated } from 'kysely';
 
 export interface Database {
   users: UsersTable;
@@ -21,7 +20,7 @@ export interface InvoicesTable {
   customer_id: UUID;
   amount: number;
   status: 'pending' | 'paid';
-  date: `${number}-${number}-${number}`;
+  date: ColumnType<Date, string, never>;
 }
 
 export interface CustomersTable {
