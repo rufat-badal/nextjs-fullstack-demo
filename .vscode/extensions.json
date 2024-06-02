@@ -1,9 +1,10 @@
 {
   "recommendations": [
-    "mkhl.direnv",
-    "dbaeumer.vscode-eslint",
+    "adpyke.vscode-sql-formatter",
     "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
     "matthewpi.caddyfile-support",
-    "adpyke.vscode-sql-formatter"
+    "mkhl.direnv"
   ]
 }
