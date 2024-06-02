@@ -1,6 +1,20 @@
 import { UUID } from 'crypto';
 import { ColumnType, Generated } from 'kysely';
 
+export type Month =
+  | 'Jan'
+  | 'Feb'
+  | 'Mar'
+  | 'Apr'
+  | 'May'
+  | 'Jun'
+  | 'Jul'
+  | 'Aug'
+  | 'Sep'
+  | 'Oct'
+  | 'Nov'
+  | 'Dec';
+
 export interface Database {
   users: UsersTable;
   invoices: InvoicesTable;
@@ -31,6 +45,6 @@ export interface CustomersTable {
 }
 
 export interface RevenueTable {
-  month: string;
+  month: Month;
   revenue: number;
 }
