@@ -6,6 +6,9 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
   "[caddyfile]": {
     "editor.defaultFormatter": "matthewpi.caddyfile-support"
   },
