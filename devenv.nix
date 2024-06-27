@@ -7,4 +7,6 @@
     pkgs.caddy
     pkgs.openssl
   ];
+
+  dotenv.enable = true; 
 }
